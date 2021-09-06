@@ -22,6 +22,8 @@ header {
 }
 .logo-box img {
     display: block;
+    max-width: 80px;
+    max-height: 80px;
 }
 nav {
     overflow: hidden;
