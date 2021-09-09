@@ -1,11 +1,11 @@
-import './NavBar.css';
+import './navBar.css';
 import CartWidget from '../CartWidget/CartWidget';
 
 const NavBar = () => {
     return (
         <div className="container">
             <div className="logo-box">
-                <img src="logo.jpg" alt="logo" />
+                <img src="./public\assets\logo.jpg" alt="logo" />
             </div>
             <nav className="NavBar">
                 <div className="LeftNav">
