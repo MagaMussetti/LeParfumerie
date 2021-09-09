@@ -11,7 +11,7 @@ function App() {
                 <NavBar />
             </header>
             <ItemListContainer greeting="Bienvenidos a nuestro catalogo" />
-            <Counter inicial={0} max={5} />
+            <Counter />
         </div>
     );
 }
