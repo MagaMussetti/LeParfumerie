@@ -1,20 +1,57 @@
 import { useState } from 'react';
 
-const Counter = () => {
-    const [count, setCount] = useState(1);
-    const miStock = 10;
+const Counter = ({ product, productsAdded, addProdFunction }) => {
+    const [quantity, setQuantity] = useState(0);
 
-    if (count > miStock) {
-        console.log('vamos bien');
-    } else {
-        return (
-            <div>
-                <h1>{count}</h1>
-                <button onClick={() => setCount(count - 1)}>-</button>
-                <button onClick={() => setCount(count + 1)}>+</button>
-            </div>
-        );
-    }
+    const onAdd = () => {
+        if (quantity < product.stock) {
+            setQuantity(quantity + 1);
+        }
+    };
+
+    const onRemove = () => {
+        if (quantity > 0) {
+            setQuantity(quantity - 1);
+        }
+    };
+
+    const onAddtoCart = () => {
+        const newProduct = {
+            ...product,
+            quantity: quantity,
+        };
+        addProdFunction([...productsAdded, newProduct]);
+    };
+
+    return (
+        <div align="center">
+            <table>
+                <tbody>
+                    <tr>
+                        <td align="left">
+                            <button className="Button" onClick={() => onRemove()}>
+                                -
+                            </button>
+                        </td>
+                        <td align="center" style={{ fontSize: '20px' }}>
+                            {quantity}
+                        </td>
+                        <td align="right">
+                            <button className="Button" onClick={() => onAdd()}>
+                                +
+                            </button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td align="center" colSpan="5">
+                            <button className="Button" onClick={() => onAddtoCart()}>
+                                Agregar
+                            </button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    );
 };
-
 export default Counter;

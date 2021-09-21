@@ -1,24 +1,21 @@
-import { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 
-const Perfume = () => {
-    return new Promise((resolve, reject) => {
-        const perfumes = [
-            { id: '01', marca: 'Dior', fragancia: 'Jadore', price: 500, stock: 5 },
-            { id: '02', marca: 'Givenchy', fragancia: 'Very', price: 1000, stock: 6 },
-            { id: '03', marca: 'Versace', fragancia: 'Blue Jeans', price: 1500, stock: 7 },
-        ];
-        setTimeout(() => resolve(perfumes), 2000);
-    });
+const Item = ({ product }) => {
+    return (
+        <div className="CardItem">
+            <div className="ContainerItem">
+                <h2 className="ItemHeader">{product.name}</h2>
+            </div>
+            <img src={product.img} alt={product.name} className="ItemImg" />
+            <h6 className="Info">{`Categoria: ${product.category} `}</h6>
+            <h6 className="Info">{`Precio: ${product.price} `}</h6>
+            {product.quantity && <h6 className="Info">{`Cantidad a comprar: ${product.quantity} `}</h6>}
+            {!product.quantity && (
+                <Link to={`/item/${product.id}`} className="Button">
+                    Comprar
+                </Link>
+            )}
+        </div>
+    );
 };
-const Item = () => {
-    const [items, setItems] = useState([]);
-    useEffect(() => {
-        const listItems = Perfume();
-        listItems.then((result) => setItems(result));
-        return () => {
-            setItems([items]);
-        };
-    }, []);
-};
-
 export default Item;
